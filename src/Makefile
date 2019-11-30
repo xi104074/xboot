@@ -5,9 +5,9 @@
 #
 # You can pass CROSS_COMPILE, PLATFORM and WBOXTEST variable.
 #
-CROSS_COMPILE	?=
-PLATFORM		?=
-WBOXTEST		?=
+CROSS_COMPILE	?= arm-linux-gnueabihf-
+PLATFORM		?= arm32-s3
+WBOXTEST		?= 1
 
 #
 # Get platform information about ARCH and MACH from PLATFORM variable.
@@ -229,6 +229,9 @@ SRCDIRS		+=	external/cairo-1.17.2
 
 INCDIRS		+=	external/chipmunk-7.0.3/include
 SRCDIRS		+=	external/chipmunk-7.0.3/src
+
+INCDIRS		+= 	external/sdcard
+SRCDIRS		+=	external/sdcard
 
 #
 # Add whitebox test

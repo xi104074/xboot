@@ -31,9 +31,9 @@ static void * ramdisk_setup(struct wboxtest_t * wbt)
 		"{\"blk-ramdisk@999\":{\"address\":%lld,\"size\":%lld}}",
 		(unsigned long long)((virtual_addr_t)pdat->rambuf),
 		(unsigned long long)((virtual_size_t)SZ_1M));
-	probe_device(json, length, NULL);
+	//probe_device(json, length, NULL);
 
-	pdat->blk = search_block("blk-ramdisk.999");
+	pdat->blk = search_block("sdhci-spi.0.sdcard.p0");
 	if(!pdat->blk)
 	{
 		free(pdat->rambuf);
@@ -50,7 +50,7 @@ static void ramdisk_clean(struct wboxtest_t * wbt, void * data)
 
 	if(pdat)
 	{
-		unregister_block(pdat->blk);
+		//unregister_block(pdat->blk);
 		free(pdat->rambuf);
 		free(pdat);
 	}
@@ -66,7 +66,7 @@ static void ramdisk_run(struct wboxtest_t * wbt, void * data)
 	if(pdat)
 	{
 		blkno = wboxtest_random_int(0, block_count(pdat->blk) - 1);
-		blkcnt = wboxtest_random_int(1, block_count(pdat->blk));
+		blkcnt = wboxtest_random_int(1, 30);
 		blkcnt = block_available_count(pdat->blk, blkno, blkcnt);
 
 		len = block_size(pdat->blk) * blkcnt;
