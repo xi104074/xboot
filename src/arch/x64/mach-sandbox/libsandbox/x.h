@@ -30,6 +30,7 @@ extern "C" {
 #include <linux/fb.h>
 #include <linux/input.h>
 #include <alsa/asoundlib.h>
+#include <gperftools/profiler.h>
 #include <SDL.h>
 
 #ifdef __cplusplus

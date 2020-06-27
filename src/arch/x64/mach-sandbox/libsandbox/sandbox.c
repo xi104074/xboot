@@ -53,6 +53,26 @@ struct sandbox_t * sandbox_get(void)
 	return &__sandbox;
 }
 
+static void set_gperf_status(int signum)
+{
+	static int flag = 0;
+	if(signum == SIGUSR2)
+	{
+		if(!flag)
+		{
+			flag = 1;
+			ProfilerStart("xboot.prof");
+			printf("profiler start\r\n");
+		}
+		else
+		{
+			flag = 0;
+			ProfilerStop();
+			printf("profiler stop\r\n");
+		}
+	}
+}
+
 void sandbox_init(int argc, char * argv[])
 {
 	struct termios ta;
@@ -116,6 +136,7 @@ void sandbox_init(int argc, char * argv[])
 	tcsetattr(0, TCSANOW, &ta);
 
 	SDL_Init(SDL_INIT_EVERYTHING);
+	signal(SIGUSR2, set_gperf_status);
 }
 
 void sandbox_exit(void)
