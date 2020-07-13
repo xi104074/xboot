@@ -17,6 +17,13 @@
 	"fb-sandbox@0": {
 		"device": "/dev/fb0",
 		"physical-width": 216,
+		"physical-height": 135,
+		"status": "disabled"
+	},
+
+	"fb-sandbox-drm@0": {
+		"device": "/dev/dri/card0",
+		"physical-width": 216,
 		"physical-height": 135
 	},
 

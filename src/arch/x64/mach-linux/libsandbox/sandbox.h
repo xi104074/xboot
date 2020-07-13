@@ -97,6 +97,19 @@ int sandbox_fb_surface_present(void * context, struct sandbox_fb_surface_t * sur
 void sandbox_fb_set_backlight(void * context, int brightness);
 int sandbox_fb_get_backlight(void * context);
 
+/* DRM device */
+void * sandbox_fb_drm_open(const char * dev);
+void sandbox_fb_drm_close(void * context);
+int sandbox_fb_drm_get_width(void * context);
+int sandbox_fb_drm_get_height(void * context);
+int sandbox_fb_drm_get_pwidth(void * context);
+int sandbox_fb_drm_get_pheight(void * context);
+int sandbox_fb_drm_surface_create(void * context, struct sandbox_fb_surface_t * surface);
+int sandbox_fb_drm_surface_destroy(void * context, struct sandbox_fb_surface_t * surface);
+int sandbox_fb_drm_surface_present(void * context, struct sandbox_fb_surface_t * surface, struct sandbox_fb_region_list_t * rl);
+void sandbox_fb_drm_set_backlight(void * context, int brightness);
+int sandbox_fb_drm_get_backlight(void * context);
+
 /*
  * File interface
  */
